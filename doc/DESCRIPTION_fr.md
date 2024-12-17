@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+Ce référentiel implémente le « relais de transit » Magic-Wormhole, un serveur qui aide les clients à établir des connexions de transit de données en masse même lorsque les deux se trouvent derrière des boîtes NAT. Chaque côté établit une connexion TCP avec ce serveur et présente une poignée de main. Deux connexions avec des poignées de main identiques sont collées ensemble, ce qui leur permet de prétendre qu'elles ont une connexion directe.
