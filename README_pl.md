@@ -21,11 +21,8 @@ Nie powinno być ono edytowane ręcznie.
 This repository implements the Magic-Wormhole "Transit Relay", a server that helps clients establish bulk-data transit connections even when both are behind NAT boxes. Each side makes a TCP connection to this server and presents a handshake. Two connections with identical handshakes are glued together, allowing them to pretend they have a direct connection.
 
 **Dostarczona wersja:** 0.4.0~ynh1
-
-**Demo:** <https://demo.example.com>
 ## Dokumentacja i zasoby
 
-- Oficjalna strona aplikacji: <https://example.com>
 - Repozytorium z kodem źródłowym: <https://github.com/magic-wormhole/magic-wormhole-transit-relay>
 - Sklep YunoHost: <https://apps.yunohost.org/app/wormhole>
 - Zgłaszanie błędów: <https://github.com/YunoHost-Apps/wormhole_ynh/issues>

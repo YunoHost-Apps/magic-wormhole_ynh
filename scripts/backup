@@ -16,6 +16,7 @@ ynh_backup "$install_dir"
 #=================================================
 
 ynh_backup "/etc/systemd/system/$app.service"
+ynh_backup "/etc/systemd/system/relay.service"
 
 #=================================================
 # END OF SCRIPT

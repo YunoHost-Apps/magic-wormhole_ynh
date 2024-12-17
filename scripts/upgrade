@@ -9,18 +9,23 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Stopping $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="stop"
+ynh_systemctl --service="relay" --action="stop"
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
 #=================================================
 ynh_script_progression "Installing Python dependencies..."
 
-ynh_safe_rm $install_dir
+pushd $install_dir
+    python3 -m venv $install_dir/venv/mailbox-server/
+    ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install magic-wormhole-mailbox-server
+popd
 
 pushd $install_dir
-    python3 -m venv $install_dir/venv
-    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
-    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-transit-relay==$(ynh_app_upstream_version)
+    python3 -m venv $install_dir/venv/transit-relay/
+    ynh_hide_warnings $install_dir/venv/transit-relay/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/transit-relay/bin/pip install magic-wormhole-transit-relay
 popd
 
 chown -R $app:$app "$install_dir"
@@ -30,11 +35,11 @@ chown -R $app:$app "$install_dir"
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_config_add_nginx
-
 ynh_config_add_systemd
+ynh_config_add_systemd --service=relay --template=relay.service
 
-yunohost service add "$app" --description="Transit Relay server for Magic-Wormhole" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="Rendez-vous server for Magic-Wormhole" --log="/var/log/$app/$app.log" --needs_exposed_ports="$port"
+yunohost service add "relay" --description="Transit relay server for Magic-Wormhole" --log="/var/log/$app/$app.log" --needs_exposed_ports="$port_relay"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -42,6 +47,7 @@ yunohost service add "$app" --description="Transit Relay server for Magic-Wormho
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="relay" --action="start"
 
 #=================================================
 # END OF SCRIPT

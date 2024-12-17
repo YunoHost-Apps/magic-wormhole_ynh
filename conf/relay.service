@@ -1,0 +1,12 @@
+[Unit]
+Description=Magic-Wormhole: Transit Relay server for Magic-Wormhole
+
+[Service]
+User=__APP__
+Group=__APP__
+WorkingDirectory=__INSTALL_DIR__/
+ExecStart=__INSTALL_DIR__/venv/transit-relay/bin/twistd transitrelay --port=tcp:__PORT_RELAY__ --blur-usage=3600
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

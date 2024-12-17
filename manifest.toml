@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "wormhole"
 name = "Magic-Wormhole"
-description.en = "Transit Relay server for Magic-Wormhole"
-description.fr = "Transit Relay server for Magic-Wormhole"
+description.en = "Transit Relay and rendez-vous server for Magic-Wormhole"
+description.fr = "Transit relais et serveur rendez-vous pour Magic-Wormhole"
 
 version = "0.4.0~ynh1"
 
@@ -13,13 +13,10 @@ maintainers = ["eric_G"]
 
 [upstream]
 license = "MIT"
-website = "https://example.com"
-demo = "https://demo.example.com"
 code = "https://github.com/magic-wormhole/magic-wormhole-transit-relay"
 
-
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.0.8"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
@@ -27,17 +24,17 @@ multi_instance = false
 ldap = "not_relevant"
 sso = "not_relevant"
 
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+disk = "160M"
+ram.build = "100M"
+ram.runtime = "150M"
 
 [install]
-    [install.domain]
-    type = "domain"
+    #[install.domain]
+    #type = "domain"
 
-    [install.init_main_permission]
-    type = "group"
-    default = "visitors"
+    #[install.init_main_permission]
+    #type = "group"
+    #default = "visitors"
 
 [resources]
 
@@ -54,11 +51,12 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.permissions]
-    main.url = "/"
 
     [resources.ports]
-    main.default = 4001
-    main.exposed = "Both"
-
+    main.default = 4000
+    main.exposed = "TCP"
+    relay.default = 4001
+    relay.exposed = "TCP"
+    
     [resources.apt]
-    packages = "python3-dev, python3-venv, python3-pip, python3-setuptools, python3-twisted"
+    packages = "python3-dev, python3-venv, python3-pip, python3-setuptools, python3-twisted, libffi-dev, build-essential"

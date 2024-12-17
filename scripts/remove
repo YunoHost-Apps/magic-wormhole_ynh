@@ -12,16 +12,23 @@ if ynh_hide_warnings yunohost service status "$app" >/dev/null; then
     yunohost service remove "$app"
 fi
 
+if ynh_hide_warnings yunohost service status "relay" >/dev/null; then
+    yunohost service remove "relay"
+fi
+
 ynh_config_remove_systemd
 
-#ynh_config_remove_nginx
+ynh_config_remove_systemd "relay"
 
 #=================================================
 # CLOSE A PORT
 #=================================================
 
 if yunohost firewall list | grep -q "\- $port"; then
-    ynh_hide_warnings yunohost firewall disallow UDP $port
+    ynh_hide_warnings yunohost firewall disallow TCP $port
+fi
+if yunohost firewall list | grep -q "\- $port_relay"; then
+    ynh_hide_warnings yunohost firewall disallow TCP $port_relay
 fi
 
 #=================================================

@@ -1,11 +1,11 @@
 [Unit]
-Description=Magic-Wormhole: Transit Relay server for Magic-Wormhole
+Description=Magic-Wormhole: Rendez-vous server for Magic-Wormhole
 
 [Service]
 User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/venv/bin/twist wormhole-mailbox --usage-db=usage.sqlite --port=tcp:__PORT__
+ExecStart=__INSTALL_DIR__/venv/mailbox-server/bin/twistd wormhole-mailbox --usage-db=usage.sqlite --port=tcp:__PORT__
 Restart=always
 
 [Install]
