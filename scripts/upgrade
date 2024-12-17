@@ -42,8 +42,8 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_systemd
 ynh_config_add_systemd --template=relay.service
 
-yunohost service add "$app" --description="Rendez-vous server for Magic-Wormhole" --log="/var/log/$app/$app.log"
-yunohost service add "relay" --description="Transit relay server for Magic-Wormhole" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="Rendez-vous server for Magic-Wormhole" --log="/var/log/$app/$app.log" --needs_exposed_ports="$port"
+yunohost service add "relay" --description="Transit relay server for Magic-Wormhole" --log="/var/log/$app/$app.log" --needs_exposed_ports="$port_relay"
 
 #=================================================
 # START SYSTEMD SERVICE
