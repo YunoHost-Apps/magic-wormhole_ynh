@@ -9,6 +9,7 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Stopping $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="stop"
+ynh_systemctl --service="relay" --action="stop"
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
@@ -33,8 +34,10 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_nginx
 
 ynh_config_add_systemd
+ynh_config_add_systemd --template=relay.service
 
 yunohost service add "$app" --description="Transit Relay server for Magic-Wormhole" --log="/var/log/$app/$app.log"
+yunohost service add "relay" --description="Transit Relay server for Magic-Wormhole" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -42,6 +45,7 @@ yunohost service add "$app" --description="Transit Relay server for Magic-Wormho
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="relay" --action="start"
 
 #=================================================
 # END OF SCRIPT
