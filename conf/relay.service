@@ -5,7 +5,7 @@ Description=Magic-Wormhole: Transit Relay server for Magic-Wormhole
 User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=__INSTALL_DIR__/venv/bin/twist transitrelay --port=tcp:__PORT__
+ExecStart=__INSTALL_DIR__/venv/bin/twist transitrelay --port=tcp:__PORT_RELAY__
 Restart=always
 
 [Install]

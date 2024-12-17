@@ -29,6 +29,9 @@ ynh_config_remove_systemd "relay"
 if yunohost firewall list | grep -q "\- $port"; then
     ynh_hide_warnings yunohost firewall disallow TCP $port
 fi
+if yunohost firewall list | grep -q "\- $port_relay"; then
+    ynh_hide_warnings yunohost firewall disallow TCP $port_relay
+fi
 
 #=================================================
 # END OF SCRIPT
