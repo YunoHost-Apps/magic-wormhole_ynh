@@ -13,8 +13,6 @@ maintainers = ["eric_G"]
 
 [upstream]
 license = "MIT"
-website = "https://example.com"
-demo = "https://demo.example.com"
 code = "https://github.com/magic-wormhole/magic-wormhole-transit-relay"
 
 
