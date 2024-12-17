@@ -1,0 +1,50 @@
+#!/bin/bash
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# FIND AND OPEN A PORT
+#=================================================
+ynh_script_progression "Configuring firewall..."
+
+# Reserve UDP Port range $port
+ynh_hide_warnings yunohost firewall allow UDP -4 $port
+
+#=================================================
+# INSTALL PYTHON DEPENDENCIES
+#=================================================
+ynh_script_progression "Installing Python dependencies..."
+
+pushd $install_dir
+    python3 -m venv $install_dir/venv
+    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-transit-relay==$(ynh_app_upstream_version)
+    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-mailbox-server
+popd
+
+chown -R $app:$app "$install_dir"
+
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression "Adding system configurations related to $app..."
+
+#ynh_config_add_nginx
+
+ynh_config_add_systemd
+
+yunohost service add "$app" --description="Transit Relay server for Magic-Wormhole" --log="/var/log/$app/$app.log"
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting $app's systemd service..."
+
+ynh_systemctl --service="$app" --action="start"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression "Installation of $app completed"
