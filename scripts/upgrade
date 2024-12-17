@@ -20,14 +20,14 @@ ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
     python3 -m venv $install_dir/venv/mailbox-server/
-    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
-    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-mailbox-server
+    ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install magic-wormhole-mailbox-server
 popd
 
 pushd $install_dir
     python3 -m venv $install_dir/venv/transit-relay/
-    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
-    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-transit-relay
+    ynh_hide_warnings $install_dir/venv/transit-relay/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/transit-relay/bin/pip install magic-wormhole-transit-relay
 popd
 
 chown -R $app:$app "$install_dir"
