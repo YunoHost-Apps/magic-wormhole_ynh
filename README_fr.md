@@ -22,11 +22,8 @@ Ceci est une fausse description des fonctionalités de l'app
 
 
 **Version incluse :** 0.4.0~ynh1
-
-**Démo :** <https://demo.example.com>
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://example.com>
 - Dépôt de code officiel de l’app : <https://github.com/magic-wormhole/magic-wormhole-transit-relay>
 - YunoHost Store : <https://apps.yunohost.org/app/wormhole>
 - Signaler un bug : <https://github.com/YunoHost-Apps/wormhole_ynh/issues>
