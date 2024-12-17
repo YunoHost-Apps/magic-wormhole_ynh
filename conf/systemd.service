@@ -1,5 +1,5 @@
 [Unit]
-Description=Magic-Wormhole: Transit Relay server for Magic-Wormhole
+Description=Magic-Wormhole: Rendez-vous server for Magic-Wormhole
 
 [Service]
 User=__APP__
