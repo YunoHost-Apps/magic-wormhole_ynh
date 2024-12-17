@@ -51,7 +51,6 @@ ram.runtime = "150M"
     [resources.install_dir]
 
     [resources.permissions]
-    main.url = "/"
 
     [resources.ports]
     main.default = 4000
