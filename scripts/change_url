@@ -16,7 +16,7 @@ ynh_systemctl --service="relay" --action="stop"
 #=================================================
 ynh_script_progression "Updating NGINX web server configuration..."
 
-ynh_config_change_url_nginx
+#ynh_config_change_url_nginx
 
 #=================================================
 # START SYSTEMD SERVICE
