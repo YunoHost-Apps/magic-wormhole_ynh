@@ -37,7 +37,7 @@ chown -R $app:$app "$install_dir"
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
 
-ynh_config_add_nginx
+#ynh_config_add_nginx
 
 ynh_config_add_systemd
 ynh_config_add_systemd --template=relay.service
