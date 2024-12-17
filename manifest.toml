@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "wormhole"
 name = "Magic-Wormhole"
-description.en = "Transit Relay server for Magic-Wormhole"
-description.fr = "Transit Relay server for Magic-Wormhole"
+description.en = "Transit Relay and rendez-vous server for Magic-Wormhole"
+description.fr = "Relais de transit et serveur rendez-vous pour Magic-Wormhole"
 
 version = "0.4.0~ynh1"
 
