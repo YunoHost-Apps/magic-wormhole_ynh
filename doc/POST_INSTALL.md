@@ -1,1 +1,1 @@
-wormhole --relay-url=ws://__DOMAIN__:__PORT__/v1 --transit-helper=tcp:__DOMAIN__:__PORT__ send FILENAME
+wormhole --relay-url=ws://__DOMAIN__:__PORT_RELAY__/v1 --transit-helper=tcp:__DOMAIN__:__PORT__ send FILENAME
