@@ -38,8 +38,6 @@ ynh_app_setting_set --key=public_ip4 --value=$public_ip4
 #=================================================
 ynh_script_progression "Adding system configurations related to $app..."
 
-#ynh_config_add_nginx
-
 ynh_config_add_systemd
 ynh_config_add_systemd --service=relay --template=relay.service
 

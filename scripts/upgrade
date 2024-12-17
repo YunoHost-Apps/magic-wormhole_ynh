@@ -16,8 +16,6 @@ ynh_systemctl --service="relay" --action="stop"
 #=================================================
 ynh_script_progression "Installing Python dependencies..."
 
-#ynh_safe_rm $install_dir
-
 pushd $install_dir
     python3 -m venv $install_dir/venv/mailbox-server/
     ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install --upgrade pip 
@@ -36,8 +34,6 @@ chown -R $app:$app "$install_dir"
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
-
-#ynh_config_add_nginx
 
 ynh_config_add_systemd
 ynh_config_add_systemd --service=relay --template=relay.service
