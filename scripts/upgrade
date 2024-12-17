@@ -16,7 +16,7 @@ ynh_systemctl --service="relay" --action="stop"
 #=================================================
 ynh_script_progression "Installing Python dependencies..."
 
-ynh_safe_rm $install_dir
+#ynh_safe_rm $install_dir
 
 pushd $install_dir
     python3 -m venv $install_dir/venv/mailbox-server/
