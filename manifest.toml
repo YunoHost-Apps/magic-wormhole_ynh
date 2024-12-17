@@ -29,8 +29,8 @@ ram.build = "100M"
 ram.runtime = "150M"
 
 [install]
-    [install.domain]
-    type = "domain"
+    #[install.domain]
+    #type = "domain"
 
     [install.init_main_permission]
     type = "group"

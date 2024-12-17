@@ -19,6 +19,7 @@ ynh_script_progression "Installing Python dependencies..."
 pushd $install_dir
     python3 -m venv $install_dir/venv/mailbox-server/
     ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install python3-twisted
     ynh_hide_warnings $install_dir/venv/mailbox-server/bin/pip install magic-wormhole-mailbox-server
 popd
 
@@ -29,6 +30,9 @@ pushd $install_dir
 popd
 
 chown -R $app:$app "$install_dir"
+
+public_ip4="$(curl -s https://ip.yunohost.org)" || true
+ynh_app_setting_set --key=public_ip4 --value=$public_ip4
 
 #=================================================
 # SYSTEM CONFIGURATION
