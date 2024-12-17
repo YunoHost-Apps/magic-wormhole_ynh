@@ -57,7 +57,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.ports]
-    main.default = 4001
+    main.default = 4000
     main.exposed = "TCP"
 
     [resources.apt]
