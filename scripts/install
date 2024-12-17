@@ -8,8 +8,8 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Configuring firewall..."
 
-# Reserve UDP Port range $port
-ynh_hide_warnings yunohost firewall allow UDP -4 $port
+ynh_hide_warnings yunohost firewall allow TCP -4 $port
+ynh_hide_warnings yunohost firewall allow TCP -4 $port_relay
 
 #=================================================
 # INSTALL PYTHON DEPENDENCIES
@@ -17,10 +17,15 @@ ynh_hide_warnings yunohost firewall allow UDP -4 $port
 ynh_script_progression "Installing Python dependencies..."
 
 pushd $install_dir
-    python3 -m venv $install_dir/venv
+    python3 -m venv $install_dir/venv/mailbox-server/
     ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
-    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-transit-relay==$(ynh_app_upstream_version)
     ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-mailbox-server
+popd
+
+pushd $install_dir
+    python3 -m venv $install_dir/venv/transit-relay/
+    ynh_hide_warnings $install_dir/venv/bin/pip install --upgrade pip 
+    ynh_hide_warnings $install_dir/venv/bin/pip install magic-wormhole-transit-relay
 popd
 
 chown -R $app:$app "$install_dir"
